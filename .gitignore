@@ -1,0 +1,8 @@
+﻿# 前端忽略
+frontend/node_modules/
+frontend/dist/
+
+# 后端忽略
+backend/venv/
+__pycache__/
+*.pyc
