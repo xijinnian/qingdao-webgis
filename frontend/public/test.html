@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>API测试页</h2>
+<script>
+// 测试获取景点
+fetch('http://localhost:5000/api/pois')
+  .then(response => response.json())
+  .then(data => console.log('景点列表:', data))
+  .catch(error => console.error('请求失败:', error));
+
+// 测试创建景点（需先在控制台获取token）
+function createPoi() {
+  const token = prompt("请输入管理员令牌：");
+  
+  fetch('http://localhost:5000/api/pois', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify({
+      name: "测试景点",
+      lng: 120.32,
+      lat: 36.06
+    })
+  })
+  .then(response => response.json())
+  .then(data => alert('创建结果：' + JSON.stringify(data)))
+  .catch(error => console.error('创建失败:', error));
+}
+</script>
+
+<button onclick="createPoi()">创建测试景点</button>
+</body>
+</html>
